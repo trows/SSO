@@ -12,24 +12,24 @@ public interface BaseDao<Model, Key extends Serializable> {
     /**
      * 增删改方法
      */
-    int insert(Model model);
+    int insert(String namespace, Model model);
 
-    int insert(String operate, Object object);
+    int insert(String namespace, String operate, Object object);
 
-    int update(Model model);
+    int update(String namespace, Model model);
 
-    int update(String operate, Object object);
+    int update(String namespace, String operate, Object object);
 
-    int delete(Key key);
+    int delete(String namespace, Key key);
 
-    int delete(String operate, Object object);
+    int delete(String namespace, String operate, Object object);
 
-    <X> List<X> find(String operate, Object object);
+    <X> List<X> find(String namespace, String operate, Object object);
 
-    Model get(Key key);
+    Model get(String namespace, Key key);
 
-    Object get(String operate, Object object);
+    Object get(String namespace, String operate, Object object);
 
-    Model getModel(String operate, Object object);
+    Model getModel(String namespace, String operate, Object object);
 
 }
