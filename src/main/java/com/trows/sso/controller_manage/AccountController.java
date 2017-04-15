@@ -22,6 +22,11 @@ public class AccountController {
     public ModelAndView toIndex(){
         ModelAndView modelAndView = new ModelAndView("/index");
         logger.error("trows get it");
+//        try {
+//            new NettyServer().bind();
+//        } catch (Exception e) {
+//            logger.error(e);
+//        }
         return modelAndView;
     }
 
