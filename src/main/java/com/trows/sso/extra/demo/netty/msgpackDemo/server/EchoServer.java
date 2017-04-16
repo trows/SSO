@@ -31,9 +31,9 @@ public class EchoServer {
 
     public void bind(int port) {
 
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
-
+        EventLoopGroup bossGroup = new NioEventLoopGroup(); // 接受连接事件组
+        EventLoopGroup workerGroup = new NioEventLoopGroup(); // 处理每个连接业务事件组
+        // 可以只使用一个group，分成两个group的好处是：业务耗时较长导致阻塞时，不会对接受连接造成影响。
         try {
 
             ServerBootstrap bootstrap = new ServerBootstrap();
@@ -43,9 +43,9 @@ public class EchoServer {
                     .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
-//                            socketChannel.pipeline().addLast("frameDecoder",new LengthFieldBasedFrameDecoder(65535,0,2,0,2));
+                            socketChannel.pipeline().addLast("frameDecoder",new LengthFieldBasedFrameDecoder(65535,0,2,0,2));
                             socketChannel.pipeline().addLast("messagePack decoder", new MessagePackDecoder());
-//                            socketChannel.pipeline().addLast("frameEncoder",new LengthFieldPrepender(2));
+                            socketChannel.pipeline().addLast("frameEncoder",new LengthFieldPrepender(2));
                             socketChannel.pipeline().addLast("messagePack encoder", new MessagePackEncoder());
                             socketChannel.pipeline().addLast(new EchoServerHandler());
                         }

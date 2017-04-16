@@ -1,11 +1,14 @@
 package com.trows.sso.model;
 
+import org.msgpack.annotation.Message;
+
 import java.io.Serializable;
 
 /**
  * Created by trows on 17-3-20.
  * 账户信息
  */
+@Message
 public class Account implements Serializable{
 
     private Long id;

@@ -20,7 +20,7 @@ public class EchoServerHandler extends ChannelHandlerAdapter {
     private int counter = 0;
 
     @Override
-    public void channelRead(ChannelHandlerContext context, Object msg) throws UnsupportedEncodingException {
+    public void channelRead(ChannelHandlerContext context, Object msg) throws Exception {
         logger.info("This is " + ++counter + " times receive client : [" + msg + "]");
         context.writeAndFlush(msg);
     }

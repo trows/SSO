@@ -36,9 +36,9 @@ public class EchoClient {
                     .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 10000)
                     .handler(new ChannelInitializer<SocketChannel>() {
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
-//                            socketChannel.pipeline().addLast("frameDecoder",new LengthFieldBasedFrameDecoder(65535,0,2,0,2));
+                            socketChannel.pipeline().addLast("frameDecoder",new LengthFieldBasedFrameDecoder(65535,0,2,0,2));
                             socketChannel.pipeline().addLast("messagePack decoder", new MessagePackDecoder());
-//                            socketChannel.pipeline().addLast("frameEncoder",new LengthFieldPrepender(2));
+                            socketChannel.pipeline().addLast("frameEncoder",new LengthFieldPrepender(2));
                             socketChannel.pipeline().addLast("messagePack encoder", new MessagePackEncoder());
                             socketChannel.pipeline().addLast(new EchoClientHandler());
                         }
