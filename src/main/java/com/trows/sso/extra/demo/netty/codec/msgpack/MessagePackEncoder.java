@@ -13,7 +13,6 @@ import org.msgpack.MessagePack;
 public class MessagePackEncoder extends MessageToByteEncoder<Object>{
 
     protected void encode(ChannelHandlerContext channelHandlerContext, Object o, ByteBuf byteBuf) throws Exception {
-        MessagePack messagePack = new MessagePack();
-        byteBuf.writeBytes(messagePack.write(o));
+        byteBuf.writeBytes(new MessagePack().write(o));
     }
 }
